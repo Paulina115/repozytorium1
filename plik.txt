@@ -1,2 +1,5 @@
-Hello Word! 
-..
+
+Hello Word! again
+"druga linia" 
+"zmiana"
+
