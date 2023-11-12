@@ -2,19 +2,23 @@
 mysql> alter table izba  add column kolor_izby varchar(20) after metraz;        Query OK, 0 rows affected (0.14 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> alter table izba
-    -> alter column kolor_izby set defaul 'czarny';
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'defaul 'czarny'' at line 2
-mysql> alter table izba  alter column kolor_izby set default 'czarny';
-Query OK, 0 rows affected (0.01 sec)
+mysql> alter table izba alter column kolor_izby set default 'czarny';
+Query OK, 0 rows affected (0.04 sec)
 Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select*from izba;
+Empty set (0.00 sec)
+
+mysql> insert into izba(adres_budynku,nazwa_izby,metraz,wlasciciel) values('dom','spizarnia',20,1);
+Query OK, 1 row affected (0.01 sec)
 
 mysql> select*from izba;
 +---------------+------------+--------+------------+------------+
 | adres_budynku | nazwa_izby | metraz | kolor_izby | wlasciciel |
 +---------------+------------+--------+------------+------------+
-| dom           | spizarnia  |     20 | NULL       |       NULL |
+| dom           | spizarnia  |     20 | czarny     |          1 |
 +---------------+------------+--------+------------+------------+
 1 row in set (0.00 sec)
+
 ```
 
