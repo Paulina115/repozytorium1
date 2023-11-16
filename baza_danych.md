@@ -120,8 +120,55 @@ Records: 0  Duplicates: 0  Warnings: 0
 mysql> alter table izba                                                                                                                                                                                                               
 -> alter column kolor set default 'czarny';                                                                                                                                                                                   
 Query OK, 0 rows affected (0.02 sec)                                                                                                                                                                                              
-Records: 0  Duplicates: 0  Warnings: 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 mysql> select*from walizka;                                                                      Empty set (0.01 sec)                                                                                                                                                                                                                               mysql> select*from postac;                                                                                                                                    
-
-
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> select*from walizka;
+Empty set (0.01 sec)
+mysql> select*from postac;                                                                                                                                    
+```
+zadanie4
+```
+use infs_jurewiczp;
+create table przetwory(
+id_przetworu int auto_increment primary key,
+rok_produkcji int default 1654,
+id_wykonawcy int,
+zawartosc varchar(225),
+dodatek varchar(225) default 'chilli',
+id_konsumenta int,
+foreign key(id_wykonawcy,id_konsumenta) references postac(id_postaci));
+insert into przetwory(id_przetworu,id_wykonawcy,zawartosc,id_konsumenta) values(1,(select id_postaci from postac where id_postaci = 1), 'bigos',(select id_postaci from postac where id_postaci = 3));
+select*from przetwory;
+select*from postac;
+insert into postac(nazwa,rodzaj,data_ur,wiek) values('Wiking1','wiking','1701-05-11',322);
+insert into postac(nazwa,rodzaj,data_ur,wiek) values('Wiking2','wiking','1702-12-11',321);
+insert into postac(nazwa,rodzaj,data_ur,wiek) values('Wiking3','wiking','1703-04-01',320);
+insert into postac(nazwa,rodzaj,data_ur,wiek) values('Wiking4','wiking','1704-03-13',319);
+insert into postac(nazwa,rodzaj,data_ur,wiek) values('Wiking5','wiking','1705-07-11',318);
+```
+zadanie5
+```
+create table statek(
+nazwa_statku varchar(60) primary key,
+rodzaj_statku enum('maly','sredni','duzy'),
+data_wodowania date,
+max_ladownosc int unsigned);
+select*from statek;
+insert into statek(nazwa_statku,rodzaj_statku,data_wodowania,max_ladownosc) values('statek1','maly','2023-12-12',20);
+insert into statek(nazwa_statku,rodzaj_statku,data_wodowania,max_ladownosc) values('statek2','sredni','2023-12-12',30);
+alter table postac add column funkcja varchar(60);
+select*from postac;
+update postac set funkcja = 'kapitan' where id_postaci = 1;
+alter table postac add column statek varchar(100);
+alter table postac add foreign key(statek) references statek(nazwa_statku);
+update postac set statek = (select nazwa_statku from statek where nazwa_statku = 'statek1') where id_postaci = 1;
+update postac set statek = (select nazwa_statku from statek where nazwa_statku = 'statek1') where id_postaci = 2;
+update postac set statek = (select nazwa_statku from statek where nazwa_statku = 'statek2') where id_postaci = 4;
+update postac set statek = (select nazwa_statku from statek where nazwa_statku = 'statek2') where id_postaci = 5;
+update postac set statek = (select nazwa_statku from statek where nazwa_statku = 'statek2') where id_postaci = 6;
+update postac set statek = (select nazwa_statku from statek where nazwa_statku = 'statek2') where id_postaci = 7;
+update postac set statek = (select nazwa_statku from statek where nazwa_statku = 'statek2') where id_postaci = 8;
+delete from izba where nazwa_izby = 'spizarnia';
+select*from izba;
+drop table izba;
 ```
 
