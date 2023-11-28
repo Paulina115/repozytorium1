@@ -171,4 +171,58 @@ delete from izba where nazwa_izby = 'spizarnia';
 select*from izba;
 drop table izba;
 ```
-
+show tables
+alter table postac modify id_postaci int;
+alter table walizka drop foreign key walizka_ibfk_1;
+alter table przetwory drop foreign key przetwory_ibfk_1;
+desc postac;
+alter table przetwory drop foreign key przetwory_ibfk_2;
+alter table postac add column pesel char(11);
+alter table postac drop primary key;
+select* fron postac;
+alter table postac change id postaci id postaci int;
+update postac set pesel = "35426719281" + id_postaci;
+alter table postec add primary key(pesel);
+alter table postac change rodzaj rodzaj enum("wiking','ptak', 'kobieta','syrena', 'waz');
+desc przetwory;
+insert into postac(id_postaci,nazwa,rodzaj,data_ur,wiek,pesel) values(11, 'Gertruda Nieszczera','syrena'
+select naze from postac where nazwa like '%ak'y
+select nazwa from postac where nazwa regexp '^d';
+update postac set statek = 'Statek1' where nazwa like '%ar';
+select: from statek where data_wodowania >= "1901-01-91' and data wodowania <= '2023-12-31'
+select*from statek where year (data _wodowania) between 1901 and 2023;
+update statek set max_ladownosc = max_ladownosc*0.7 where year(data_wodowania) between 1901 and 2023;
+select*from statek;
+alter table postac add check (wiek <= 1009);
+C3
+1663-19-83',323, *35426719281"
+id_postaci);
+update postac set wiek
+2000 where nazwa = 'Bjorn
+insert into postac(id_postaci,nazwa,rodzaj,data_ur,wiek,pesel) valuis(12,'Loko', 'waz', '1506-09-03',523, '35426719281" + id_postaci);
+create table Marynarz like postac;
+select*from Marynarz;
+desc Maryna-z;
+desc postac;
+ej na
+OS
+post
+id_postaci);
+zrobil
+iej
+tr2e
+Jchy ni
+dobny
+28
+29
+30
+31
+32
+33
+34
+Hministration Schemas
+formation:
+No object selected
+desc Marynarz;
+insert into Marynarz select
+from postac where statek is not null:
