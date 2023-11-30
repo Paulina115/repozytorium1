@@ -229,3 +229,26 @@ nazwa varchar(10)
 wiek int);
 insert into zwierz (nazwa select*from postac where rodzaj = 'ptak')
 ```
+```
+create table kreatura as select*from wikingowie.kreatura;
+select*from kreatura;
+create table zasob as select*from wikingowie.zasob;
+select*from zasob;
+create table ekwipunek as select*from wikingowie.ekwipunek;
+select*from ekwipunek;
+select*from zasob where rodzaj = 'jedzenie';
+select*from zasob where kreatura.idKreatury = 1 or kreatura.idKreatury=3 or kreatura.idKreatury=5 ;
+select*from kreatura where rodzaj = 'wiedzma' and udzwig >= 50;
+select*from zasob where waga between 2 and 5;
+select*from kreatura where nazwa like '%or%'and udzwig between 30 and 70;
+select*from zasob where month(dataPozyskania) = 07 or  month(dataPozyskania) = 08 ;
+select rodzaj from zasob where rodzaj is not null order by waga asc;
+select*from kreatura order by dataUr desc limit 5;
+select distinct rodzaj from zasob;
+select distinct ilosc,rodzaj from zasob where rodzaj = 'jedzenie' and ilosc = 1;
+select concat(nazwa , rodzaj ) from kreatura where rodzaj like '%wi%';
+select concat(ilosc*waga) from zasob where year(dataPozyskania) between 200 and 2007;
+select concat(0.7*waga,'|',0.3*waga) from zasob;
+select*from zasob where rodzaj is null;
+select distinct rodzaj from zasob where nazwa like '%Ba%' or nazwa like '%os%' order by nazwa;
+```
