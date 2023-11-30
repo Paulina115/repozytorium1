@@ -229,6 +229,7 @@ nazwa varchar(10)
 wiek int);
 insert into zwierz (nazwa select*from postac where rodzaj = 'ptak')
 ```
+zadanie1
 ```
 create table kreatura as select*from wikingowie.kreatura;
 select*from kreatura;
