@@ -265,3 +265,18 @@ select concat(0.7*waga,'|',0.3*waga) from zasob;
 select*from zasob where rodzaj is null;
 select distinct rodzaj from zasob where nazwa like '%Ba%' or nazwa like '%os%' order by nazwa;
 ```
+zadanie 1
+```
+select*from kreatura;
+select avg(waga) from kreatura where rodzaj = wiking';
+select avg(waga),rodzaj,count(*) from kreatura group by rodzaj
+select avg(2023-year (dataur)) from kreatura group by rodzaj;
+select*from ekwipunek;
+```
+zadanie 2
+```
+select sum(waga*ilosc) from zasob group by rodzaj;
+select*from zasob;
+select avg(waga*ilosc) from zasob where ilosc >= 4"
+group by nazwa having sum(waga)>=10
+select count(distinct nazwa) from zasob group by rodzaj having min(ilosc) > 1;
