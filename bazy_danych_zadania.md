@@ -280,3 +280,13 @@ select*from zasob;
 select avg(waga*ilosc) from zasob where ilosc >= 4"
 group by nazwa having sum(waga)>=10
 select count(distinct nazwa) from zasob group by rodzaj having min(ilosc) > 1;
+```
+zadanie3
+```
+select k.nazwa,sum( e.ilosc) from ekwipunek e inner join kreatura k on e.idKreatury = k.idKreatury group by k.nazwa ;
+
+
+```
+zadanie 4
+```
+
