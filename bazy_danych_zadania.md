@@ -285,8 +285,12 @@ zadanie3
 ```
 select k.nazwa,sum( e.ilosc) from ekwipunek e inner join kreatura k on e.idKreatury = k.idKreatury group by k.nazwa ;
 
+select k.nazwa, z.nazwa from zasob z inner join ekwipunek e on z.idZasobu=e.idZasobu inner join kreatura k on k.idKreatury = e.idKreatury;
+select k.nazwa from kreatura k left join ekwipunek e on k.idKreatury= e.idKreatury  where e.idKreatury is  null;
+
 
 ```
 zadanie 4
 ```
+select k.nazwa, z.nazwa from kreatura k inner join ekwipunek e on k.idKreatury = e.idKreatury inner join zasob z on e.idZasobu = z.idZasobu where year(k.dataUr) between 1670 and 1680;
 
