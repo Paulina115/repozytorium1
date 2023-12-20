@@ -1,3 +1,4 @@
+#LAB4
 Zadanie1
 ```
 mysql> create table postac(
@@ -171,6 +172,7 @@ delete from izba where nazwa_izby = 'spizarnia';
 select*from izba;
 drop table izba;
 ```
+#LAB5
 zadanie1
 ```
 show tables
@@ -229,6 +231,7 @@ nazwa varchar(10)
 wiek int);
 insert into zwierz (nazwa select*from postac where rodzaj = 'ptak')
 ```
+#LAB6
 zadanie1
 ```
 create table kreatura as select*from wikingowie.kreatura;
@@ -265,6 +268,7 @@ select concat(0.7*waga,'|',0.3*waga) from zasob;
 select*from zasob where rodzaj is null;
 select distinct rodzaj from zasob where nazwa like '%Ba%' or nazwa like '%os%' order by nazwa;
 ```
+#LAB&
 zadanie 1
 ```
 select*from kreatura;
@@ -293,4 +297,23 @@ select k.nazwa from kreatura k left join ekwipunek e on k.idKreatury= e.idKreatu
 zadanie 4
 ```
 select k.nazwa, z.nazwa from kreatura k inner join ekwipunek e on k.idKreatury = e.idKreatury inner join zasob z on e.idZasobu = z.idZasobu where year(k.dataUr) between 1670 and 1680;
+
+select k.nazwa from kreatura k inner join ekwipunek e on k.idKreatury=e.idKreatury inner join zasob z on z.idZasobu = e.idZasobu where z.rodzaj = 'jedzenie' order by k.dataUr desc limit 5;
+
+select concat(k1.nazwa,'-',k2.nazwa) from kreatura k1 inner join kreatura k2 on k1.idKreatury - k2.idKreatury = 5;
+```
+zadanie5
+```
+select avg(z.waga*z.ilosc) from zasob z inner join ekwipunek e on z.idZasobu = e.idZasobu inner join kreatura k on k.idkreatury=e.idKreatury where k.rodzaj<>'waz' or k.rodzaj<> 'malpa'and e.ilosc <30 group by k.rodzaj;
+
+select k.rodzaj,k.nazwa,n.najstarsza,n.najmlodsza from (select rodzaj, max(dataUr) as najstarsza, min(dataUr) as najmlodsza from kreatura group by rodzaj) n inner join kreatura k on n.najstarsza=k.dataUr;
+```
+#LAB8
+zadanie1
+```
+
+
+
+
+
 
