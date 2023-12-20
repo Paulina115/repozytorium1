@@ -172,7 +172,7 @@ delete from izba where nazwa_izby = 'spizarnia';
 select*from izba;
 drop table izba;
 ```
-#LAB5
+# LAB5
 zadanie1
 ```
 show tables
@@ -231,7 +231,7 @@ nazwa varchar(10)
 wiek int);
 insert into zwierz (nazwa select*from postac where rodzaj = 'ptak')
 ```
-#LAB6
+# LAB6
 zadanie1
 ```
 create table kreatura as select*from wikingowie.kreatura;
@@ -268,7 +268,7 @@ select concat(0.7*waga,'|',0.3*waga) from zasob;
 select*from zasob where rodzaj is null;
 select distinct rodzaj from zasob where nazwa like '%Ba%' or nazwa like '%os%' order by nazwa;
 ```
-#LAB&
+# LAB7
 zadanie 1
 ```
 select*from kreatura;
@@ -308,9 +308,40 @@ select avg(z.waga*z.ilosc) from zasob z inner join ekwipunek e on z.idZasobu = e
 
 select k.rodzaj,k.nazwa,n.najstarsza,n.najmlodsza from (select rodzaj, max(dataUr) as najstarsza, min(dataUr) as najmlodsza from kreatura group by rodzaj) n inner join kreatura k on n.najstarsza=k.dataUr;
 ```
-#LAB8
+# LAB8
 zadanie1
 ```
+create table uczestnicy as select*from wikingowie.uczestnicy;
+create table etapy_wyprawy as select*from wikingowie.etapy_wyprawy;
+create table sektor as select*from wikingowie.sektor;
+create table wyprawa as select*from wikingowie.wyprawa;
+
+select k.nazwa, k.idKreatury  from kreatura k left join uczestnicy u on k.idKreatury = u.id_uczestnika
+where u.id_uczestnika is null;
+
+select w.nazwa, sum(e.ilosc) from wyprawa w inner join uczestnicy u on w.id_wyprawy = u.id_wyprawy inner join ekwipunek e on e.idKreatury = u.id_uczestnika group by w.nazwa;
+```
+zadanie2
+```
+select w.nazwa,count( u.id_wyprawy),group_concat(k.nazwa) from wyprawa w inner join uczestnicy u on w.id_wyprawy = u.id_wyprawy inner join kreatura k on u.id_uczestnika=k.idKreatury group by u.id_wyprawy;
+
+select w.nazwa, ew.idEtapu, s.nazwa, k.nazwa as nazwa_kierownika from wyprawa w
+inner join etapy_wyprawy ew on w.id_wyprawy = ew.idWyprawy
+inner join kreatura k on w.kierownik = k.idKreatury
+inner join sektor s on s.id_sektora = ew.sektor
+order by w.data_rozpoczecia asc, ew.kolejnosc asc;
+```
+zadanie3
+```
+select s.nazwa as nazwa_sektora, count(ew.idWyprawy) as ilosc_odwiedzin from sektor s left join etapy_wyprawy ew on s.id_sektora=ew.sektor group by s.nazwa;
+
+select k.nazwa, case when count(u.id_wyprawy) > 0 then 'brala udzial w wyprawie' else 'nie brala udzialu w wyprawie' end as udzial from kreatura k left join uczestnicy u on k.idKreatury=u.id_uczestnika group by k.nazwa;
+```
+
+
+
+
+
 
 
 
