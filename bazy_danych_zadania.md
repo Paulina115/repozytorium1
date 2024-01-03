@@ -333,10 +333,22 @@ order by w.data_rozpoczecia asc, ew.kolejnosc asc;
 ```
 zadanie3
 ```
-select s.nazwa as nazwa_sektora, count(ew.idWyprawy) as ilosc_odwiedzin from sektor s left join etapy_wyprawy ew on s.id_sektora=ew.sektor group by s.nazwa;
+select s.nazwa, count(ew.sektor) as ilosc_odwiedzin from sektor s left join etapy_wyprawy ew on s.id_sektora=ew.sektor group by s.nazwa;
 
-select k.nazwa, case when count(u.id_wyprawy) > 0 then 'brala udzial w wyprawie' else 'nie brala udzialu w wyprawie' end as udzial from kreatura k left join uczestnicy u on k.idKreatury=u.id_uczestnika group by k.nazwa;
+select k.nazwa, if(count(u.id_uczestnika)>0,'Brala udzial','Nie brala udzialu') as udzial
+from kreatura k left join uczestnicy u on k.idKreatury=u.id_uczestnika group by k.nazwa;
+
 ```
+zadanie4
+```
+ select w.nazwa,sum(length(ew.dziennik))from wyprawa w inner join etapy_wyprawy ew on w.id_wyprawy=ew.idWyprawy group by w.nazwa having sum(length(ew.dziennik))<400;
+
+select w.nazwa,sum(z.waga*z.ilosc)/count(u.id_uczestnika)from wyprawa w inner join uczestnicy u on w.id_wyprawy=u.id_wyprawy inner join ekwipunek e on u.id_uczestnika=e.idKreatury inner join zasob z on e.idZasobu=z.idZasobu group by w.nazwa;
+```
+zadanie5
+```
+select w.nazwa,k.nazwa,datediff(k.dataUr,w.data_rozpoczecia)from kreatura k inner join uczestnicy u on k.idKreatury = u.id_uczestnika inner join wyprawa w on u.id_wyprawy=w.id_wyprawy inner join etapy_wyprawy ew on w.id_wyprawy=ew.idWyprawy where ew.sektor=7;
+
 
 
 
