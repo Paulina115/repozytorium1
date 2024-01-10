@@ -350,7 +350,7 @@ zadanie5
 select w.nazwa,k.nazwa,datediff(k.dataUr,w.data_rozpoczecia)from kreatura k inner join uczestnicy u on k.idKreatury = u.id_uczestnika inner join wyprawa w on u.id_wyprawy=w.id_wyprawy inner join etapy_wyprawy ew on w.id_wyprawy=ew.idWyprawy where ew.sektor=7;
 
 ```
-#LAB9
+# LAB9
 zadanie1
 ```
 delimiter //
