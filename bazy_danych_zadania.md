@@ -349,6 +349,55 @@ zadanie5
 ```
 select w.nazwa,k.nazwa,datediff(k.dataUr,w.data_rozpoczecia)from kreatura k inner join uczestnicy u on k.idKreatury = u.id_uczestnika inner join wyprawa w on u.id_wyprawy=w.id_wyprawy inner join etapy_wyprawy ew on w.id_wyprawy=ew.idWyprawy where ew.sektor=7;
 
+```
+#LAB9
+zadanie1
+```
+delimiter //
+create trigger kreatura_before_insert before insert on kreatura
+for each row
+begin
+ if new.waga<=0
+    then
+      set new.waga = 1;
+  end if;
+end//
+delimiter;
+```
+zadanie2
+```
+delimiter//
+ create trigger wyprawa_insert_archiwum_wypraw
+    before delete on wyprawa
+    for each row
+     begin
+         insert into archiwum_wypraw
+        select w.id_wyprawy, w.nazwa, w.data_rozpoczecia, w.data_zakonczenia, k.nazwa AS kierownik
+        from wyprawa w
+        inner join kreatura k on k.idKreatury = w.kierownik
+        where w.id_wyprawy = old.id_wyprawy;
+     end //
+delimiter;
+```
+zadanie3
+```
+delimiter//
+create procedure eliksir_sily(in id int)
+begin
+   update kreatura set udzwig = 1.2*udzwig where idKreatury=id;
+end//
+
+create function wielkie_litery(tekst varchar(225)) returns varchar(225)
+begin
+declare tekst varchar(225);
+set rezultat = upper(tekst);
+return rezultat;
+end//
+```
+zadanie4
+```
+ create table system_alarmowy( id_alarmu int primary key, wiadomosc varchar(225));
+
 
 
 
