@@ -398,8 +398,38 @@ zadanie4
 ```
  create table system_alarmowy( id_alarmu int primary key, wiadomosc varchar(225));
 
+```
+.
+```
+select imie,nazwisko,year(data_urodzenia) from pracownik;
 
+select imie,nazwisko,2023 - year(data_urodzenia) from pracownik;
 
+select d.nazwa,count(p.dzial) from dzial d inner join pracownik p on d.id_dzialu=p.dzial 
+group by p.dzial;
+select*from pracownik;
+
+select*from kategoria;
+select*from towar;
+select k.nazwa_kategori,count(t.kategoria) from kategoria k inner join
+towar t on k.id_kategori=t.kategoria group by t.kategoria;
+
+select k.nazwa_kategori, group_concat(t.nazwa_towaru,'|') from kategoria k inner join
+towar t on k.id_kategori=t.kategoria group by t.kategoria;
+
+select round(avg(pensja),2) from pracownik;
+
+select avg(pensja) from pracownik where (2023-year(data_zatrudnienia)) > 5;
+
+select*from zamowienie;
+select t.nazwa_towaru,sum(pz.ilosc) from towar t inner join pozycja_zamowienia pz 
+on t.id_towaru=pz.towar group by t.id_towaru order by sum(pz.ilosc) desc limit 10;
+
+select z.data_zamowienia,numer_zamowienia, sum(pz.ilosc*pz.cena) from zamowienie z inner join 
+pozycja_zamowienia pz on z.id_zamowienia=pz.zamowienie where 
+z.data_zamowienia between 2017-01-01 and 2017-03-31 group by 
+z.numer_zamowienia,z.data_zamowienia
+```
 
 
 
