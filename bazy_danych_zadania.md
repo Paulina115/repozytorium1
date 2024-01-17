@@ -405,6 +405,7 @@ zadanie4
 select imie,nazwisko,year(data_urodzenia) from pracownik;
 ```
 2
+```
 select imie,nazwisko,2023 - year(data_urodzenia) from pracownik;
 ```
 3
