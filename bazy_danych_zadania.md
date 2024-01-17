@@ -441,10 +441,12 @@ select t.nazwa_towaru,sum(pz.ilosc) from towar t inner join pozycja_zamowienia p
 on t.id_towaru=pz.towar group by t.id_towaru order by sum(pz.ilosc) desc limit 10;
 ```
 9
+
 ```
 select z.numer_zamowienia,sum(pz.ilosc*pz.cena) as wartosc from zamowienie z inner join pozycja_zamowienia pz on z.id_zamowienia=pz.zamowienie where quarter(z.data_zamowienia)=1 and year(z.data_zamowienia)=2017 group by z.numer_zamowienia;
 ```
 10
+
 ```
 select p.id_pracownika,p.imie,p.nazwisko,sum(pz.ilosc*pz.cena)as wartosc
 from pracownik p  inner join zamowienie z on z.pracownik_id_pracownika=p.id_prac
